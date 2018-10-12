@@ -1,17 +1,133 @@
 // Content.js
 
-import React, { Component } from 'react';
+import React, { Component } from "react";
 
 export default class Content extends Component {
   render() {
     return (
-      <div className="card">
-         <div className="card-body">
-         <h5 className="card-title">React PWA Example</h5>
-         <p className="card-text">A Progressive Web App (PWA) is a web app that uses advanced web capabilities to provide an app-like experience to users. Unlike traditional applications, Progressive web apps are a hybrid of regular web pages (or websites) and a mobile application.</p>
-         <a href="https://appdividend.com" className="btn btn-primary">Go somewhere</a>
-         </div>
+      <div>
+          <h5 className="card-title">React PWA Example</h5>
+          <div className="progress">
+            <div
+              className="progress-bar bg-info"
+              role="progressbar"
+              style={{"width": "50%"}}
+              aria-valuenow="50"
+              aria-valuemin="0"
+              aria-valuemax="100"
+            />
+          </div>
+          <div className="progress">
+            <div
+              className="progress-bar bg-info"
+              role="progressbar"
+              style={{"width": "50%"}}
+              aria-valuenow="50"
+              aria-valuemin="0"
+              aria-valuemax="100"
+            />
+          </div>
+          <div className="progress">
+            <div
+              className="progress-bar bg-info"
+              role="progressbar"
+              style={{"width": "50%"}}
+              aria-valuenow="50"
+              aria-valuemin="0"
+              aria-valuemax="100"
+            />
+          </div>
+          <div className="progress">
+            <div
+              className="progress-bar bg-info"
+              role="progressbar"
+              style={{"width": "50%"}}
+              aria-valuenow="50"
+              aria-valuemin="0"
+              aria-valuemax="100"
+            />
+          </div>
+          <div className="progress">
+            <div
+              className="progress-bar bg-warning"
+              role="progressbar"
+              style={{"width": "75%"}}
+              aria-valuenow="75"
+              aria-valuemin="0"
+              aria-valuemax="100"
+            />
+          </div>
+          <div className="progress">
+            <div
+              className="progress-bar bg-warning"
+              role="progressbar"
+              style={{"width": "75%"}}
+              aria-valuenow="75"
+              aria-valuemin="0"
+              aria-valuemax="100"
+            />
+          </div>
+          <div className="progress">
+            <div
+              className="progress-bar bg-warning"
+              role="progressbar"
+              style={{"width": "75%"}}
+              aria-valuenow="75"
+              aria-valuemin="0"
+              aria-valuemax="100"
+            />
+          </div>
+          <div className="progress">
+            <div
+              className="progress-bar bg-warning"
+              role="progressbar"
+              style={{"width": "75%"}}
+              aria-valuenow="75"
+              aria-valuemin="0"
+              aria-valuemax="100"
+            />
+          </div>
+          <div className="progress">
+            <div
+              className="progress-bar bg-danger"
+              role="progressbar"
+              style={{"width": "100%"}}
+              aria-valuenow="100"
+              aria-valuemin="0"
+              aria-valuemax="100"
+            />
+          </div>
+          <div className="progress">
+            <div
+              className="progress-bar bg-danger"
+              role="progressbar"
+              style={{"width": "100%"}}
+              aria-valuenow="100"
+              aria-valuemin="0"
+              aria-valuemax="100"
+            />
+          </div>
+          <div className="progress">
+            <div
+              className="progress-bar bg-danger"
+              role="progressbar"
+              style={{"width": "100%"}}
+              aria-valuenow="100"
+              aria-valuemin="0"
+              aria-valuemax="100"
+            />
+          </div>
+          <div className="progress">
+            <div
+              className="progress-bar bg-danger"
+              role="progressbar"
+              style={{"width": "100%"}}
+              aria-valuenow="100"
+              aria-valuemin="0"
+              aria-valuemax="100"
+            />
+          </div>
       </div>
-    )
-   }
+    );
+  }
 }
