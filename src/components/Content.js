@@ -1,132 +1,36 @@
 // Content.js
 
 import React, { Component } from "react";
-
+import M from 'materialize-css';
+import moment from 'moment';
+import Day from "./Day";
 export default class Content extends Component {
+
+  state = {
+    week:[]
+  }
+
+  componentWillMount() {
+    this.setState({
+      week: [1,2,3,4,5].map(i => moment().startOf('week').add(i, 'days'))
+    })
+  }
+
+  componentDidMount(){
+    var elems = document.querySelectorAll('.collapsible');
+    var instances = M.Collapsible.init(elems, {});
+  }
+  
   render() {
+
+   let week = [...this.state.week];
+   let lis = week.map((day,i)=><Day day={day} i={i}/>);
+
     return (
       <div>
-          <h5 className="card-title">React PWA Example</h5>
-          <div className="progress">
-            <div
-              className="progress-bar bg-info"
-              role="progressbar"
-              style={{"width": "50%"}}
-              aria-valuenow="50"
-              aria-valuemin="0"
-              aria-valuemax="100"
-            />
-          </div>
-          <div className="progress">
-            <div
-              className="progress-bar bg-info"
-              role="progressbar"
-              style={{"width": "50%"}}
-              aria-valuenow="50"
-              aria-valuemin="0"
-              aria-valuemax="100"
-            />
-          </div>
-          <div className="progress">
-            <div
-              className="progress-bar bg-info"
-              role="progressbar"
-              style={{"width": "50%"}}
-              aria-valuenow="50"
-              aria-valuemin="0"
-              aria-valuemax="100"
-            />
-          </div>
-          <div className="progress">
-            <div
-              className="progress-bar bg-info"
-              role="progressbar"
-              style={{"width": "50%"}}
-              aria-valuenow="50"
-              aria-valuemin="0"
-              aria-valuemax="100"
-            />
-          </div>
-          <div className="progress">
-            <div
-              className="progress-bar bg-warning"
-              role="progressbar"
-              style={{"width": "75%"}}
-              aria-valuenow="75"
-              aria-valuemin="0"
-              aria-valuemax="100"
-            />
-          </div>
-          <div className="progress">
-            <div
-              className="progress-bar bg-warning"
-              role="progressbar"
-              style={{"width": "75%"}}
-              aria-valuenow="75"
-              aria-valuemin="0"
-              aria-valuemax="100"
-            />
-          </div>
-          <div className="progress">
-            <div
-              className="progress-bar bg-warning"
-              role="progressbar"
-              style={{"width": "75%"}}
-              aria-valuenow="75"
-              aria-valuemin="0"
-              aria-valuemax="100"
-            />
-          </div>
-          <div className="progress">
-            <div
-              className="progress-bar bg-warning"
-              role="progressbar"
-              style={{"width": "75%"}}
-              aria-valuenow="75"
-              aria-valuemin="0"
-              aria-valuemax="100"
-            />
-          </div>
-          <div className="progress">
-            <div
-              className="progress-bar bg-danger"
-              role="progressbar"
-              style={{"width": "100%"}}
-              aria-valuenow="100"
-              aria-valuemin="0"
-              aria-valuemax="100"
-            />
-          </div>
-          <div className="progress">
-            <div
-              className="progress-bar bg-danger"
-              role="progressbar"
-              style={{"width": "100%"}}
-              aria-valuenow="100"
-              aria-valuemin="0"
-              aria-valuemax="100"
-            />
-          </div>
-          <div className="progress">
-            <div
-              className="progress-bar bg-danger"
-              role="progressbar"
-              style={{"width": "100%"}}
-              aria-valuenow="100"
-              aria-valuemin="0"
-              aria-valuemax="100"
-            />
-          </div>
-          <div className="progress">
-            <div
-              className="progress-bar bg-danger"
-              role="progressbar"
-              style={{"width": "100%"}}
-              aria-valuenow="100"
-              aria-valuemin="0"
-              aria-valuemax="100"
-            />
-          </div>
+          <ul className="collapsible">
+            {lis}
+          </ul>
       </div>
     );
   }

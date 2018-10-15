@@ -1,22 +1,43 @@
 // Navbar.js
 
 import React, { Component } from 'react';
+import M from 'materialize-css'
 
 export default class Navbar extends Component {
+
+  componentDidMount(){
+    var elems = document.querySelectorAll('.sidenav');
+    var instances = M.Sidenav.init(elems, {});
+  }
   render() {
     return (
-      <nav className="navbar navbar-expand-lg navbar-light bg-light">
-         <a className="navbar-brand" href="https://google.com/">Fuck It Works!!!!</a>
-         <button className="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
-            <span className="navbar-toggler-icon"></span>
-         </button>
-         <div className="collapse navbar-collapse" id="navbarNav">
-            <ul className="navbar-nav">
-               <li className="nav-item">
-               <a className="nav-link" href="https://google.com/">I know</a>
-               </li>
+      <nav>
+        <div className="nav-wrapper" style={{backgroundColor:'#0e31c8'}}>
+          <a href="#" data-target="slide-out" className="sidenav-trigger"><i className="material-icons">menu</i></a>
+          <ul id="slide-out" className="sidenav">
+              <li>
+                <div className="user-view">
+                  <div className="background">
+                    <img src="images/office.jpg" />
+                  </div>
+                  <a href="#user"><img className="circle" src="images/yuna.jpg" /></a>
+                  <a href="#name"><span className="white-text name">John Doe</span></a>
+                  <a href="#email"><span className="white-text email">jdandturk@gmail.com</span></a>
+                </div>
+              </li>
+              <li><a href="#!"><i className="material-icons">cloud</i>First Link With Icon</a></li>
+              <li><a href="#!">Second Link</a></li>
+              <li><div className="divider"></div></li>
+              <li><a className="subheader">Subheader</a></li>
+              <li><a className="waves-effect" href="#!">Third Link With Waves</a></li>
             </ul>
-         </div>
+          <ul className="right hide-on-med-and-down">
+            <li><a href="badges.html"><i className="material-icons">date_range</i></a></li>
+            {/* <li><a href="collapsible.html"><i className="material-icons">refresh</i></a></li> */}
+
+            
+          </ul>
+        </div>
       </nav>
     );
   }
