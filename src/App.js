@@ -3,7 +3,9 @@
 import React, { Component } from "react";
 import Navbar from "./components/Navbar";
 import Content from "./components/Content";
+import Footer from "./components/Footer";
 import firebase from 'firebase';
+import './App.css'
 
 class App extends Component {
   constructor(props) {
@@ -23,6 +25,7 @@ class App extends Component {
         <Navbar />
         <br />
         <Content />
+        <Footer/>
       </div>
     );
   }
