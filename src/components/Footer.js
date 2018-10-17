@@ -14,7 +14,7 @@ export default class Footer extends Component {
         let key = moment().format("DDMMYYYY"),
             val = JSON.parse(localStorage.getItem(key));
 
-        if(val && val.body && !val.body.stop) 
+        if(val && !val.stop) 
             val.body.stop = moment().format('DDMMYYYY hh:mm:ss');
 
         localStorage.setItem(key,JSON.stringify(val));

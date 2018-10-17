@@ -14,7 +14,7 @@ export default class Content extends Component {
 
   componentWillMount() {
     localStorage.setItem("15102018",JSON.stringify({start:"15102018 10:00:00",end:"15102018 18:00:00"}));
-    //localStorage.setItem("16102018",JSON.stringify({start:"16102018 10:00:00"}));
+    localStorage.setItem("16102018",JSON.stringify({start:"15102018 10:00:00",end:"15102018 19:00:00"}));
     this.setState({
       week: [1,2,3,4,5].map(i => moment().startOf('week').add(i, 'days'))
     })
