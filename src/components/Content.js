@@ -20,6 +20,12 @@ export default class Content extends Component {
     })
   }
 
+  componentDidMount() {
+    this.interval = setInterval(() => this.setState({ time: Date.now() }), 60*1000);
+  }
+  componentWillUnmount() {
+    clearInterval(this.interval);
+  }
   
   start = e => {
     if (e.target.className.indexOf('start')>-1) {
