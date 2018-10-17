@@ -5,6 +5,7 @@ import Navbar from "./components/Navbar";
 import Content from "./components/Content";
 import Footer from "./components/Footer";
 import firebase from 'firebase';
+import M from 'materialize-css';
 import './App.css'
 
 class App extends Component {
@@ -19,6 +20,14 @@ class App extends Component {
       messagingSenderId: "879704879907"
     });
   }
+
+  componentDidMount(){
+    M.Sidenav.init(document.querySelectorAll('.sidenav'), {});
+    M.Collapsible.init(document.querySelectorAll('.collapsible'), {});
+    M.Timepicker.init(document.querySelectorAll('.timepicker'), {});
+    M.FloatingActionButton.init(document.querySelectorAll('.fixed-action-btn'), {});
+  }
+
   render() {
     return (
       <div>

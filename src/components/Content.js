@@ -1,7 +1,6 @@
 // Content.js
 
 import React, { Component } from "react";
-import M from 'materialize-css';
 import moment from 'moment';
 import Day from "./Day";
 export default class Content extends Component {
@@ -14,16 +13,13 @@ export default class Content extends Component {
 
   componentWillMount() {
     localStorage.setItem("15102018",JSON.stringify({start:"15102018 10:00:00",end:"15102018 18:00:00"}));
-    localStorage.setItem("16102018",JSON.stringify({start:"15102018 10:00:00",end:"15102018 19:00:00"}));
+    localStorage.setItem("16102018",JSON.stringify({start:"16102018 10:00:00",end:"16102018 19:40:00"}));
+    localStorage.setItem("17102018",JSON.stringify({start:"17102018 10:00:00",end:"17102018 19:00:00"}));
     this.setState({
       week: [1,2,3,4,5].map(i => moment().startOf('week').add(i, 'days'))
     })
   }
 
-  componentDidMount(){
-    var elems = document.querySelectorAll('.collapsible');
-    var instances = M.Collapsible.init(elems, {});
-  }
   
   start = e => {
     if (e.target.className.indexOf('start')>-1) {
@@ -40,10 +36,10 @@ export default class Content extends Component {
   render() {
 
     let week = [...this.state.week];
-    let lis = week.map((day, i) => <Day key={i} e={{
-              day,
+    let lis = week.map((day, i) => <Day key={day.format('DDMMYYYY')} e={{
+              key:day.format('DDMMYYYY'),
               today: day.format("DDMMYYYY") === moment().format("DDMMYYYY"),
-              body: JSON.parse(localStorage.getItem(day.format('DDMMYYYY')))
+              day: JSON.parse(localStorage.getItem(day.format('DDMMYYYY')))
             }} />);
 
     return (

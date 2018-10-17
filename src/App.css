@@ -32,12 +32,10 @@
 }
 
 .progress {
-	position: relative;
 	height: 12px;
-	display: block;
 	width: 70%;
-	background-color: #acece6;
-	border-radius: 2px;
-	margin: .5rem 0 1rem 0;
-	overflow: hidden;
+}
+
+.collapsible-header {
+	flex-wrap: wrap;
 }
