@@ -3,6 +3,7 @@
 import React, { Component } from "react";
 import moment from 'moment';
 import Day from "./Day";
+import Footer from "./Footer";
 export default class Content extends Component {
 
   state = {
@@ -12,9 +13,9 @@ export default class Content extends Component {
   }
 
   componentWillMount() {
-    localStorage.setItem("15102018",JSON.stringify({start:"15102018 10:00:00",end:"15102018 18:00:00"}));
-    localStorage.setItem("16102018",JSON.stringify({start:"16102018 10:00:00",end:"16102018 19:40:00"}));
-    localStorage.setItem("17102018",JSON.stringify({start:"17102018 10:00:00",end:"17102018 19:00:00"}));
+    localStorage.setItem("15102018",JSON.stringify({start:"10:00 AM",end:"10:00 PM"}));
+    localStorage.setItem("16102018",JSON.stringify({start:"10:00 AM",end:"10:00 PM"}));
+    localStorage.setItem("17102018",JSON.stringify({start:"10:00 AM",end:"10:00 PM"}));
     this.setState({
       week: [1,2,3,4,5].map(i => moment().startOf('week').add(i, 'days'))
     })
@@ -28,23 +29,45 @@ export default class Content extends Component {
   }
   
   start = e => {
+    console.log("e.target.classname",e.target.className)
     if (e.target.className.indexOf('start')>-1) {
       let key = moment().format("DDMMYYYY"),
-      val = JSON.parse(localStorage.getItem(key))||{start:moment().format('DDMMYYYY hh:mm:ss')};
-      
-
+      val = JSON.parse(localStorage.getItem(key))||{start:moment().format('h:mm A')};
       localStorage.setItem( key, JSON.stringify(val) );
+      this.forceUpdate();
+    }
+  }
+  
+  end = e => {
+    let key = moment().format("DDMMYYYY"),
+    val = JSON.parse(localStorage.getItem(key));
+    
+    if (val && !val.end) {
+      val.end = moment().format('h:mm A');
+      localStorage.setItem(key, JSON.stringify(val));
+      console.log("updating........",val)
+      this.forceUpdate();
 
-      this.setState({started:true});
+    }
+  }
+
+  setTime = (e, id, action) => {
+    let val = e.target.value,
+        day = JSON.parse(localStorage.getItem(id));
+    console.log("acton:::", action, "val::::", val, "id::::", id, "day:::::", day)
+    if (/^(1[0-2]|0?[1-9]):[0-5][0-9] (AM|PM)$/.test(val) && day) {
+        day[action] = val;
+        localStorage.setItem(id, JSON.stringify(day));
+        this.forceUpdate();
     }
   }
 
   render() {
 
     let week = [...this.state.week];
-    let lis = week.map((day, i) => <Day key={day.format('DDMMYYYY')} e={{
+    let lis = week.map((day, i) => <Day key={day.format('DDMMYYYY')} start={this.start} setTime={this.setTime} e={{
               key:day.format('DDMMYYYY'),
-              today: day.format("DDMMYYYY") === moment().format("DDMMYYYY"),
+              isToday: day.format("DDMMYYYY") === moment().format("DDMMYYYY"),
               day: JSON.parse(localStorage.getItem(day.format('DDMMYYYY')))
             }} />);
 
@@ -53,6 +76,7 @@ export default class Content extends Component {
           <ul onClick={this.start} className="collapsible">
             {lis}
           </ul>
+          <Footer end={this.end}/>
       </div>
     );
   }
