@@ -5,19 +5,20 @@ export default (props) => {
     console.log("props:::::::::",props)
   let background = (props.e.isToday && "#cff2cf") || "#f6f6f6";
   let progress, body = progress = null;
-  let icon = "event",startclass = "";
+  let icon = "event";
 
   //start the day
   if(props.e.isToday && !props.e.day){
     icon = "add";
-    startclass = "start";
-    progress = <div className={startclass}> &nbsp;&nbsp;&nbsp;&nbsp;{"Tap to Start the day"}</div>;
+    progress = <div> &nbsp;&nbsp;&nbsp;&nbsp;{"Tap to Start the day"}</div>;
   }
  
 
   if (props.e.day && props.e.day.start) {
     let start = moment(props.e.key +' '+props.e.day.start, 'DDMMYYYY h:mm A'),
         end = (props.e.day.end && moment(props.e.key +' '+props.e.day.end, 'DDMMYYYY h:mm A'))||"";
+    console.log("start:::",start.format('LT'))
+    console.log("end:::",end && end.format('LT'))
 
     if (props.e.isToday && !props.e.day.end){
       icon = "timelapse";
@@ -38,13 +39,13 @@ export default (props) => {
               <span>
                 <i className="material-icons tiny">hourglass_empty</i>
                 &nbsp;&nbsp;{"In Time:"}&nbsp;&nbsp;
-                <input type="text"  className="timepicker" onChange={e=>props.setTime(e, start.format("DDMMYYYY"), "start")} defaultValue={ start.format('LT')}/>
+                <input type="text"  className="" onChange={e=>props.setTime(e, props.e.key, "start")} value={ props.e.day.start}/>
               </span>
               <br/>
               <span>
                 <i className="material-icons tiny">hourglass_full</i>
                 &nbsp;&nbsp;{"Out Time:"}&nbsp;&nbsp;
-                <input type="text" className="" onChange={e=>props.setTime(e, start.format("DDMMYYYY"), "end")} defaultValue={(end && end.format('LT'))||""}/>
+                <input type="text" className="" onChange={e=>props.setTime(e, props.e.key, "end")} value={props.e.day.end||""}/>
               </span>
             </div>
           </div>;
@@ -52,8 +53,8 @@ export default (props) => {
   
   return (
     <li>
-      <div className={`collapsible-header ${startclass}`} onClick={props.start} style={{ background }}>
-      <i className={`material-icons ${startclass}`}>{icon}</i>
+      <div className="collapsible-header" onClick={props.start} style={{ background }}>
+      <i className="material-icons">{icon}</i>
       {moment(props.e.key,'DDMMYYYY').format('DD')}
         &nbsp;&nbsp;
       {moment(props.e.key,'DDMMYYYY').format('dddd')}

@@ -13,9 +13,6 @@ export default class Content extends Component {
   }
 
   componentWillMount() {
-    localStorage.setItem("15102018",JSON.stringify({start:"10:00 AM",end:"10:00 PM"}));
-    localStorage.setItem("16102018",JSON.stringify({start:"10:00 AM",end:"10:00 PM"}));
-    localStorage.setItem("17102018",JSON.stringify({start:"10:00 AM",end:"10:00 PM"}));
     this.setState({
       week: [1,2,3,4,5].map(i => moment().startOf('week').add(i, 'days'))
     })
@@ -29,13 +26,12 @@ export default class Content extends Component {
   }
   
   start = e => {
-    console.log("e.target.classname",e.target.className)
-    if (e.target.className.indexOf('start')>-1) {
       let key = moment().format("DDMMYYYY"),
-      val = JSON.parse(localStorage.getItem(key))||{start:moment().format('h:mm A')};
-      localStorage.setItem( key, JSON.stringify(val) );
-      this.forceUpdate();
-    }
+      val = JSON.parse(localStorage.getItem(key));
+      if(!val){
+        localStorage.setItem( key, JSON.stringify({start:moment().format('h:mm A')}) );
+        this.forceUpdate();
+      }
   }
   
   end = e => {
@@ -73,7 +69,7 @@ export default class Content extends Component {
 
     return (
       <div className="container">
-          <ul onClick={this.start} className="collapsible">
+          <ul className="collapsible">
             {lis}
           </ul>
           <Footer end={this.end}/>
